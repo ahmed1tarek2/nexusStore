@@ -79,7 +79,7 @@ function CategoryDropdown() {
                   value={category.name}
                   onSelect={() => setSelectedCategory(category.name)}
                 >
-                  {category.name}
+                  {category.name} ({category.count})
                 </Menu.Item>
               ))}
             </Menu.Content>

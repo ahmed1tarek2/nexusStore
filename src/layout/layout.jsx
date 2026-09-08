@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import TopNave from "./navBar/TopNave";
 import { Box } from "@chakra-ui/react";
 import NavBar from "./navBar/NavBar";
+import NexusMartFooter from "./Footer";
 
 function Layout() {
   return (
@@ -11,8 +12,8 @@ function Layout() {
         <TopNave />
         <NavBar />
       </Box>
-
       <Outlet />
+      <NexusMartFooter />
     </>
   );
 }

@@ -32,7 +32,7 @@ function NavBar() {
   const activePath = "electronics";
 
   return (
-    <Box>
+    <Box shadow="sm" position="sticky" top={0} zIndex={1000}>
       {/* TOP NAV */}
       <Box bg="white">
         <Flex
@@ -238,24 +238,6 @@ function NavBar() {
         >
           {/* Left */}
           <HStack gap={{ base: 2, md: 6 }} w={{ base: "100%", lg: "auto" }}>
-            {/* Departments */}
-            <Button
-              bg="#08164B"
-              color="white"
-              _hover={{ bg: "#122468" }}
-              size="sm"
-              borderRadius="md"
-              fontWeight="semibold"
-              flexShrink={0}
-            >
-              <FiMenu size={20} />
-
-              <Text display={{ base: "none", sm: "block" }}>
-                All Departments
-              </Text>
-
-              <FiChevronDown size={16} />
-            </Button>
 
             {/* Nav Links */}
             <HStack
