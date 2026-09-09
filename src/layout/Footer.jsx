@@ -109,7 +109,7 @@ function BrandLockup() {
  * ---------------------------------------------------------------------*/
 function NexusMartFooter() {
   return (
-    <Box as="footer" w="100%" bg="#eff4ff" color="#061449" mt={16}>
+    <Box as="footer" w="100%" bg="primaryContainer" color="primaryText" mt={16}>
       <Grid
         w="100%"
         maxW="1440px"
@@ -133,19 +133,19 @@ function NexusMartFooter() {
             institutional trust, and global delivery logistics.
           </Text>
 
-          <VStack align="stretch" gap={2} fontSize="14px" color="#45464f">
+          <VStack align="stretch" gap={2} fontSize="14px" color="textColor">
             <HStack gap={2}>
-              <Icon as={MdCall} color="#061449" boxSize="18px" />
+              <Icon as={MdCall} color="primaryText" boxSize="18px" />
               <Text>+1 (800) 849-6398</Text>
             </HStack>
 
             <HStack gap={2}>
-              <Icon as={MdMail} color="#061449" boxSize="18px" />
+              <Icon as={MdMail} color="primaryText" boxSize="18px" />
               <Text>support@nexusmart.com</Text>
             </HStack>
 
             <HStack gap={2} align="flex-start">
-              <Icon as={MdLocationOn} color="#061449" boxSize="18px" mt="2px" />
+              <Icon as={MdLocationOn} color="primaryText" boxSize="18px" mt="2px" />
 
               <Text>100 Commerce Blvd, Suite 400, New York, NY</Text>
             </HStack>
@@ -161,7 +161,7 @@ function NexusMartFooter() {
         <VStack align="stretch" gap={4}>
           <Text
             fontWeight="bold"
-            color="#061449"
+            color="primaryText"
             fontSize="13px"
             letterSpacing="wide"
             textTransform="uppercase"
@@ -169,7 +169,7 @@ function NexusMartFooter() {
             Stay Connected
           </Text>
 
-          <Text fontSize="14px" color="#45464f">
+          <Text fontSize="14px" color="textColor">
             Subscribe to our newsletter for curated product highlights and
             member-only promotions.
           </Text>
@@ -180,21 +180,21 @@ function NexusMartFooter() {
               placeholder="Your email address"
               fontSize="14px"
               border="none"
-              _placeholder={{ color: "#45464f" }}
+              _placeholder={{ color: "textColor" }}
             />
 
             <Button
-              bg="#ab3500"
+              bg="secColor"
               color="white"
               fontWeight="600"
               flexShrink={0}
-              _hover={{ bg: "#fe6a34" }}
+              _hover={{ bg: "hoversecColor" }}
             >
               Join
             </Button>
           </HStack>
 
-          <HStack gap={3} color="#45464f">
+          <HStack gap={3} color="textColor">
             {SOCIAL_ICONS.map((IconCmp, i) => (
               <Flex
                 key={i}
@@ -205,7 +205,7 @@ function NexusMartFooter() {
                 bg="#fff"
                 align="center"
                 justify="center"
-                _hover={{ color: "#061449" }}
+                _hover={{ color: "primaryText" }}
               >
                 <Icon as={IconCmp} boxSize="18px" />
               </Flex>
@@ -217,7 +217,7 @@ function NexusMartFooter() {
               <Badge
                 key={p}
                 bg="#fff"
-                color="#45464f"
+                color="textColor"
                 fontWeight="bold"
                 fontSize="10px"
                 px={2}
@@ -243,7 +243,7 @@ function NexusMartFooter() {
           justify="space-between"
           gap={2}
           fontSize="14px"
-          color="#45464f"
+          color="textColor"
         >
           <Text>© 2025 NexusMart Global Inc. All rights reserved.</Text>
 

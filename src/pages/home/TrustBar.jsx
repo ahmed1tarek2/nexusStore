@@ -16,24 +16,24 @@ import {
 const RIGHT_ITEMS = [
   {
     icon: MdLocalShipping,
-    color: "#061449",
+    color: "mainColor",
     label: "Fast Door-to-Door Worldwide Air Freight",
   },
   {
     icon: MdEco,
-    color: "#003623",
+    color: "mainColor",
     label: "Carbon-Neutral Packaging Standard",
   },
   {
     icon: MdCurrencyExchange,
-    color: "#061449",
+    color: "mainColor",
     label: "30-Day Hassle-Free Returns",
   },
 ];
 
 export function TrustBar() {
   return (
-    <Box w="100%" bg="#eff4ff" py={2} mt={2}>
+    <Box w="100%" bg="primaryContainer" py={2} mt={2}>
       <Flex
         maxW="1440px"
         mx="auto"
@@ -44,10 +44,10 @@ export function TrustBar() {
         gap={3}
         fontSize="12px"
         fontWeight="600"
-        color="#45464f"
+        color="textColor"
       >
         <HStack gap={2}>
-          <Icon asChild boxSize="16px" color="#fe6a34">
+          <Icon asChild boxSize="16px" color="secColor">
             <MdVerifiedUser />
           </Icon>
           <Text>Buyer Protection Guarantee on All Global Shipments</Text>

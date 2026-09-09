@@ -5,7 +5,7 @@ import { IoChevronDown } from "react-icons/io5";
 function TopNave() {
   return (
     <Box
-      bg="#08164B"
+      bg="mainColor"
       w="100%"
       h={{ base: "36px", sm: "40px" }}
       px={{ base: 3, sm: 4, md: 6 }}

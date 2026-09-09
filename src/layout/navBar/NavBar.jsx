@@ -105,9 +105,9 @@ function NavBar() {
 
             {/* Search Button */}
             <Button
-              bg="#08164B"
+              bg="mainColor"
               color="white"
-              _hover={{ bg: "#122468" }}
+              _hover={{ bg: "hovermainColor" }}
               h={{ base: "34px", lg: "40px" }}
               minW={{ base: "40px", lg: "48px" }}
               px={{ base: 3, lg: 5 }}
@@ -154,8 +154,8 @@ function NavBar() {
               position="relative"
               cursor="pointer"
               p={1}
-              color="gray.600"
-              _hover={{ color: "#08164B" }}
+              color="mainColor"
+              _hover={{ color: "hovermainColor" }}
             >
               <FiHeart size={24} />
 
@@ -163,7 +163,7 @@ function NavBar() {
                 position="absolute"
                 top="-4px"
                 right="-4px"
-                bg="orange.400"
+                bg="secColor"
                 color="white"
                 fontSize="10px"
                 fontWeight="bold"
@@ -179,21 +179,18 @@ function NavBar() {
             {/* Cart */}
             <HStack
               gap={2}
-              bg="gray.50"
-              _hover={{ bg: "gray.100" }}
-              borderRadius="lg"
               px={{ base: 2, md: 3, lg: 4 }}
               py={2}
               cursor="pointer"
             >
               <Box position="relative">
-                <FiShoppingBag size={24} color="#08164B" />
+                <FiShoppingBag size={24} color="mainColor" />
 
                 <Flex
                   position="absolute"
                   top="-8px"
                   right="-8px"
-                  bg="orange.400"
+                  bg="secColor"
                   color="white"
                   fontSize="10px"
                   fontWeight="bold"
@@ -215,7 +212,7 @@ function NavBar() {
                   Cart
                 </Text>
 
-                <Text fontSize="sm" fontWeight="bold" color="#08164B">
+                <Text fontSize="sm" fontWeight="bold" color="mainColor">
                   $148.50
                 </Text>
               </Flex>
