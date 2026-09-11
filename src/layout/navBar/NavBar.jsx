@@ -18,6 +18,7 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import CategoryDropdown from "./CategoryDropdown.jsx";
+import { Link } from "react-router-dom";
 
 const NAV_LINKS = [
   { label: "Fashion", path: "fashion" },
@@ -54,7 +55,6 @@ function NavBar() {
               h={{ base: "36px", md: "40px", lg: "50px" }}
               w="auto"
               objectFit="contain"
-              
             />
           </Box>
 
@@ -125,7 +125,21 @@ function NavBar() {
             flexShrink={0}
           >
             {/* Account */}
-            <HStack
+            <Button
+              as={Link}
+              to="/login"
+              display={{ base: "none", md: "flex" }}
+              bgColor="secColor"
+              _hover={{ bgColor: "hoversecColor" }}
+              py={2}
+              px={{ base: 3, md: 5 }}
+              color="white"
+              fontSize={{ base: "xs", md: "sm" }}
+              fontWeight="bold"
+            >
+              login
+            </Button>
+            {/* <HStack
               gap={2}
               cursor="pointer"
               display={{ base: "none", md: "flex" }}
@@ -147,7 +161,7 @@ function NavBar() {
                   Hi, Alex
                 </Text>
               </Flex>
-            </HStack>
+            </HStack> */}
 
             {/* Wishlist */}
             <Box
@@ -235,7 +249,6 @@ function NavBar() {
         >
           {/* Left */}
           <HStack gap={{ base: 2, md: 6 }} w={{ base: "100%", lg: "auto" }}>
-
             {/* Nav Links */}
             <HStack
               gap={{ md: 2, lg: 4 }}

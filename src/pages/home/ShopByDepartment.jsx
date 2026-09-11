@@ -61,7 +61,7 @@ function DepartmentCard({ dept }) {
           bg="white"
           align="center"
           justify="center"
-          color="#061449"
+          color="mainColor"
         >
           <Icon asChild boxSize="20px">
             <dept.icon />
@@ -69,7 +69,7 @@ function DepartmentCard({ dept }) {
         </Flex>
 
         <VStack align="center" gap="2px" textAlign="center">
-          <Text fontSize="14px" fontWeight="700" color="#061449">
+          <Text fontSize="14px" fontWeight="700" color="mainColor">
             {dept.label}
           </Text>
           <Text fontSize="12px" color="#6b7089">
@@ -90,13 +90,13 @@ function ShopByDepartment() {
             <Text
               fontSize="12px"
               fontWeight="700"
-              color="#ab3500"
+              color="hoversecColor"
               textTransform="uppercase"
               letterSpacing="wide"
             >
               Catalog Index
             </Text>
-            <Text fontSize="22px" fontWeight="800" color="#061449">
+            <Text fontSize="22px" fontWeight="800" color="mainColor">
               Shop by Department
             </Text>
           </VStack>
@@ -106,7 +106,7 @@ function ShopByDepartment() {
             href="#"
             align="center"
             gap={1}
-            color="#1e2a5e"
+            color="hoversecColor"
             fontSize="14px"
             fontWeight="600"
             _hover={{ color: "#ab3500" }}

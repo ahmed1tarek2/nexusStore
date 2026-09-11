@@ -223,9 +223,11 @@ function HeroSlide({ slide }) {
                   alt={slide.productName}
                 />
                 <Box
+                  w="100%"
+                  h="100%"
                   position="absolute"
-                  inset={0}
-                  bgGradient="linear(to-t, #061449e6, transparent, transparent)"
+                  inset="0"
+                  background="linear-gradient(to top, rgba(6, 20, 73, 0.95), rgba(6, 20, 73, 0.2), transparent)"
                 />
 
                 <Flex
@@ -363,7 +365,7 @@ function Swipy() {
         className="swipy-pagination"
         position="absolute"
         bottom={21}
-        left={{ base: 4, lg: 20 }}
+        left={{ base: 4, lg: "70px" }}
         zIndex={20}
       />
 
