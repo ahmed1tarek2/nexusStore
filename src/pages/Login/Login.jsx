@@ -19,7 +19,13 @@ import {
 } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaFacebook } from "react-icons/fa";
+import { useAuthStore } from "../../store";
+import { useLogin } from "../../service/Api/UserAuth";
+
 function Login() {
+  const { addUser } = useAuthStore();
+  const{mutateAsync: loginUser} =useLogin()
+
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -27,84 +33,92 @@ function Login() {
     formState: { errors },
   } = useForm({ defaultValues: { email: "", password: "" } });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("data:", data);
-  }
+    try {
+      const response = await loginUser(data);
+      const { id } = response;
+      addUser(id);
+      console.log("response:", response);
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <VStack align="stretch" gap={4}>
-          {/* Email */}
-          <VStack align="stretch" gap="6px">
-            <Text fontSize="13px" fontWeight="600" color="#061449">
-              Email Address
-            </Text>
-            <HStack
-              bg="#f4f5fb"
-              borderRadius="10px"
-              px={3}
-              h="44px"
-              border="1px solid #e7e9f3"
-              _focusWithin={{ borderColor: "#061449" }}
-            >
-              <Icon asChild boxSize="16px" color="#8a8d9f">
-                <MdOutlineMail />
-              </Icon>
+        {/* Email */}
+        <VStack align="stretch" gap="6px">
+          <Text fontSize="13px" fontWeight="600" color="#061449">
+            Email Address
+          </Text>
+          <HStack
+            bg="#f4f5fb"
+            borderRadius="10px"
+            px={3}
+            h="44px"
+            border="1px solid #e7e9f3"
+            _focusWithin={{ borderColor: "#061449" }}
+          >
+            <Icon asChild boxSize="16px" color="#8a8d9f">
+              <MdOutlineMail />
+            </Icon>
 
-              <Input
-                {...register("email")}
-                variant="unstyled"
-                placeholder="you@example.com"
-                fontSize="14px"
-                bg="#f4f5fb"
-              />
-            </HStack>
-          </VStack>
-          {/* Password */}
-          <VStack align="stretch" gap="6px">
-            <Flex justify="space-between">
-              <Text fontSize="13px" fontWeight="600" color="#061449">
-                Password
-              </Text>
-              <Text
-                as="a"
-                href="#"
-                fontSize="12px"
-                fontWeight="600"
-                color="#ab3500"
-              >
-                Forgot password?
-              </Text>
-            </Flex>
-            <HStack
+            <Input
+              {...register("email")}
+              variant="unstyled"
+              placeholder="you@example.com"
+              fontSize="14px"
               bg="#f4f5fb"
-              borderRadius="10px"
-              px={3}
-              h="44px"
-              border="1px solid #e7e9f3"
-              _focusWithin={{ borderColor: "#061449" }}
+            />
+          </HStack>
+        </VStack>
+        {/* Password */}
+        <VStack align="stretch" gap="6px">
+          <Flex justify="space-between">
+            <Text fontSize="13px" fontWeight="600" color="#061449">
+              Password
+            </Text>
+            <Text
+              as="a"
+              href="#"
+              fontSize="12px"
+              fontWeight="600"
+              color="#ab3500"
             >
-              <Icon asChild boxSize="16px" color="#8a8d9f">
-                <MdOutlineLock />
-              </Icon>
-              <Input
-                {...register("password")}
-                variant="unstyled"
-                bg="#f4f5fb"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                fontSize="14px"
-              />
-              <Icon
-                asChild
-                boxSize="16px"
-                color="#8a8d9f"
-                cursor="pointer"
-                onClick={() => setShowPassword((value) => !value)}
-              >
-                <MdOutlineVisibility />
-              </Icon>
-            </HStack>
-          </VStack>
+              Forgot password?
+            </Text>
+          </Flex>
+          <HStack
+            bg="#f4f5fb"
+            borderRadius="10px"
+            px={3}
+            h="44px"
+            border="1px solid #e7e9f3"
+            _focusWithin={{ borderColor: "#061449" }}
+          >
+            <Icon asChild boxSize="16px" color="#8a8d9f">
+              <MdOutlineLock />
+            </Icon>
+            <Input
+              {...register("password")}
+              variant="unstyled"
+              bg="#f4f5fb"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              fontSize="14px"
+            />
+            <Icon
+              asChild
+              boxSize="16px"
+              color="#8a8d9f"
+              cursor="pointer"
+              onClick={() => setShowPassword((value) => !value)}
+            >
+              <MdOutlineVisibility />
+            </Icon>
+          </HStack>
+        </VStack>
         {/* Remember Me */}
         <Flex justify="space-between" align="center">
           <HStack gap={2}>
