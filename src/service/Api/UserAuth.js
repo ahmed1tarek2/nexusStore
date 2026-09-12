@@ -11,6 +11,7 @@ const auth = async ({ email, password }) => {
     throw new Error("Invalid password");
   }
   return user;
+
 };
 
 export const useLogin = () => {

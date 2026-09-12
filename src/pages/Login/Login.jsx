@@ -24,9 +24,11 @@ import { useLogin } from "../../service/Api/UserAuth";
 
 function Login() {
   const { addUser } = useAuthStore();
-  const{mutateAsync: loginUser} =useLogin()
+  const { mutateAsync: loginUser } = useLogin();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -34,16 +36,19 @@ function Login() {
   } = useForm({ defaultValues: { email: "", password: "" } });
 
   const onSubmit = async (data) => {
-    console.log("data:", data);
+    setLoginError("");
     try {
       const response = await loginUser(data);
-      const { id } = response;
-      addUser(id);
-      console.log("response:", response);
+      addUser(response);
     } catch (error) {
       console.error("Login error:", error);
+      setLoginError(
+        error?.response?.data?.message ||
+          "Invalid email or password. Please try again.",
+      );
     }
   };
+
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <VStack align="stretch" gap={4}>
@@ -57,21 +62,33 @@ function Login() {
             borderRadius="10px"
             px={3}
             h="44px"
-            border="1px solid #e7e9f3"
-            _focusWithin={{ borderColor: "#061449" }}
+            border="1px solid"
+            borderColor={errors.email ? "#e53e3e" : "#e7e9f3"}
+            _focusWithin={{ borderColor: errors.email ? "#e53e3e" : "#061449" }}
           >
             <Icon asChild boxSize="16px" color="#8a8d9f">
               <MdOutlineMail />
             </Icon>
 
             <Input
-              {...register("email")}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
               variant="unstyled"
               placeholder="you@example.com"
               fontSize="14px"
               bg="#f4f5fb"
             />
           </HStack>
+          {errors.email && (
+            <Text fontSize="12px" color="#e53e3e">
+              {errors.email.message}
+            </Text>
+          )}
         </VStack>
         {/* Password */}
         <VStack align="stretch" gap="6px">
@@ -94,14 +111,23 @@ function Login() {
             borderRadius="10px"
             px={3}
             h="44px"
-            border="1px solid #e7e9f3"
-            _focusWithin={{ borderColor: "#061449" }}
+            border="1px solid"
+            borderColor={errors.password ? "#e53e3e" : "#e7e9f3"}
+            _focusWithin={{
+              borderColor: errors.password ? "#e53e3e" : "#061449",
+            }}
           >
             <Icon asChild boxSize="16px" color="#8a8d9f">
               <MdOutlineLock />
             </Icon>
             <Input
-              {...register("password")}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
               variant="unstyled"
               bg="#f4f5fb"
               type={showPassword ? "text" : "password"}
@@ -118,7 +144,20 @@ function Login() {
               <MdOutlineVisibility />
             </Icon>
           </HStack>
+          {errors.password && (
+            <Text fontSize="12px" color="#e53e3e">
+              {errors.password.message}
+            </Text>
+          )}
         </VStack>
+
+        {/* General login error (from API) */}
+        {loginError && (
+          <Text fontSize="13px" color="#e53e3e" textAlign="center">
+            {loginError}
+          </Text>
+        )}
+
         {/* Remember Me */}
         <Flex justify="space-between" align="center">
           <HStack gap={2}>
