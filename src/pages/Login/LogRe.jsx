@@ -17,6 +17,7 @@ import {
   MdStar,
 } from "react-icons/md";
 import Login from "./Login";
+import Register from "./Register";
 function LoginPanel() {
   return (
     <Box
@@ -27,7 +28,6 @@ function LoginPanel() {
       overflow="hidden"
       bg="#061449"
     >
-      {" "}
       <Image
         src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=700&q=80"
         alt="Global Member Club"
@@ -36,13 +36,13 @@ function LoginPanel() {
         objectFit="cover"
         position="absolute"
         inset={0}
-      />{" "}
+      />
       <Box
         position="absolute"
         inset={0}
         background="linear-gradient(to top, rgba(6,20,73,0.96), rgba(6,20,73,0.55) 55%, rgba(6,20,73,0.25))"
-      />{" "}
-      {/* Top badges */}{" "}
+      />
+      {/* Top badges */}
       <Flex
         position="absolute"
         top={5}
@@ -51,7 +51,6 @@ function LoginPanel() {
         justify="space-between"
         align="center"
       >
-        {" "}
         <HStack
           bg="whiteAlpha.200"
           backdropFilter="blur(6px)"
@@ -60,30 +59,25 @@ function LoginPanel() {
           borderRadius="full"
           gap={1}
         >
-          {" "}
           <Text
             fontSize="11px"
             fontWeight="700"
             color="white"
             letterSpacing="wide"
           >
-            {" "}
-            GLOBAL MEMBER CLUB{" "}
-          </Text>{" "}
-        </HStack>{" "}
+            GLOBAL MEMBER CLUB
+          </Text>
+        </HStack>
         <HStack gap={1} color="white">
-          {" "}
           <Icon asChild boxSize="14px" color="#ffd166">
-            {" "}
-            <MdStar />{" "}
-          </Icon>{" "}
+            <MdStar />
+          </Icon>
           <Text fontSize="13px" fontWeight="700">
-            {" "}
-            4.9 / 5.0{" "}
-          </Text>{" "}
-        </HStack>{" "}
-      </Flex>{" "}
-      {/* Bottom content */}{" "}
+            4.9 / 5.0
+          </Text>
+        </HStack>
+      </Flex>
+      {/* Bottom content */}
       <VStack
         align="flex-start"
         gap={4}
@@ -93,7 +87,6 @@ function LoginPanel() {
         right={0}
         p={6}
       >
-        {" "}
         <Text
           fontSize="11px"
           fontWeight="700"
@@ -101,20 +94,16 @@ function LoginPanel() {
           letterSpacing="wide"
           textTransform="uppercase"
         >
-          {" "}
-          Verified Marketplace{" "}
-        </Text>{" "}
+          Verified Marketplace
+        </Text>
         <Text fontSize="24px" fontWeight="800" color="white" lineHeight="1.25">
-          {" "}
-          Join over 2.4M savvy shoppers worldwide.{" "}
-        </Text>{" "}
+          Join over 2.4M savvy shoppers worldwide.
+        </Text>
         <Text fontSize="13px" color="#dde1ff" maxW="360px">
-          {" "}
           Unlock curated daily deals, guaranteed authentic electronics, elevated
-          fashion staples, and high-velocity express fulfillment.{" "}
-        </Text>{" "}
+          fashion staples, and high-velocity express fulfillment.
+        </Text>
         <VStack align="stretch" gap="10px" w="100%" pt={1}>
-          {" "}
           <HStack
             bg="whiteAlpha.100"
             backdropFilter="blur(6px)"
@@ -122,7 +111,6 @@ function LoginPanel() {
             p={3}
             gap={3}
           >
-            {" "}
             <Flex
               w="32px"
               h="32px"
@@ -132,24 +120,19 @@ function LoginPanel() {
               justify="center"
               color="white"
             >
-              {" "}
               <Icon asChild boxSize="16px">
-                {" "}
-                <MdOutlineLocalShipping />{" "}
-              </Icon>{" "}
-            </Flex>{" "}
+                <MdOutlineLocalShipping />
+              </Icon>
+            </Flex>
             <VStack align="flex-start" gap="0">
-              {" "}
               <Text fontSize="13px" fontWeight="700" color="white">
-                {" "}
-                Free Express Shipping{" "}
-              </Text>{" "}
+                Free Express Shipping
+              </Text>
               <Text fontSize="11px" color="#c3c7ea">
-                {" "}
-                On qualified multi-category orders over $75{" "}
-              </Text>{" "}
-            </VStack>{" "}
-          </HStack>{" "}
+                On qualified multi-category orders over $75
+              </Text>
+            </VStack>
+          </HStack>
           <HStack
             bg="whiteAlpha.100"
             backdropFilter="blur(6px)"
@@ -157,7 +140,6 @@ function LoginPanel() {
             p={3}
             gap={3}
           >
-            {" "}
             <Flex
               w="32px"
               h="32px"
@@ -167,24 +149,19 @@ function LoginPanel() {
               justify="center"
               color="white"
             >
-              {" "}
               <Icon asChild boxSize="16px">
-                {" "}
-                <MdOutlineVerifiedUser />{" "}
-              </Icon>{" "}
-            </Flex>{" "}
+                <MdOutlineVerifiedUser />
+              </Icon>
+            </Flex>
             <VStack align="flex-start" gap="0">
-              {" "}
               <Text fontSize="13px" fontWeight="700" color="white">
-                {" "}
-                Institutional 30-Day Guarantee{" "}
-              </Text>{" "}
+                Institutional 30-Day Guarantee
+              </Text>
               <Text fontSize="11px" color="#c3c7ea">
-                {" "}
-                Zero-friction returns & authentic verification{" "}
-              </Text>{" "}
-            </VStack>{" "}
-          </HStack>{" "}
+                Zero-friction returns & authentic verification
+              </Text>
+            </VStack>
+          </HStack>
           <HStack
             bg="whiteAlpha.100"
             backdropFilter="blur(6px)"
@@ -192,7 +169,6 @@ function LoginPanel() {
             p={3}
             gap={3}
           >
-            {" "}
             <Flex
               w="32px"
               h="32px"
@@ -202,29 +178,22 @@ function LoginPanel() {
               justify="center"
               color="white"
             >
-              {" "}
               <Icon asChild boxSize="16px">
-                {" "}
-                <MdBolt />{" "}
-              </Icon>{" "}
-            </Flex>{" "}
+                <MdBolt />
+              </Icon>
+            </Flex>
             <VStack align="flex-start" gap="0">
-              {" "}
               <Text fontSize="13px" fontWeight="700" color="white">
-                {" "}
-                Member-Only Flash Drops{" "}
-              </Text>{" "}
+                Member-Only Flash Drops
+              </Text>
               <Text fontSize="11px" color="#c3c7ea">
-                {" "}
-                Up to 65% off top-tier international brands{" "}
-              </Text>{" "}
-            </VStack>{" "}
-          </HStack>{" "}
-        </VStack>{" "}
+                Up to 65% off top-tier international brands
+              </Text>
+            </VStack>
+          </HStack>
+        </VStack>
         <HStack gap={2} pt={1}>
-          {" "}
           <HStack gap="-8px">
-            {" "}
             <Flex
               w="26px"
               h="26px"
@@ -237,9 +206,8 @@ function LoginPanel() {
               fontSize="10px"
               fontWeight="700"
             >
-              {" "}
-              EL{" "}
-            </Flex>{" "}
+              EL
+            </Flex>
             <Flex
               w="26px"
               h="26px"
@@ -253,9 +221,8 @@ function LoginPanel() {
               fontWeight="700"
               ml="-8px"
             >
-              {" "}
-              MR{" "}
-            </Flex>{" "}
+              MR
+            </Flex>
             <Flex
               w="26px"
               h="26px"
@@ -269,17 +236,14 @@ function LoginPanel() {
               fontWeight="700"
               ml="-8px"
             >
-              {" "}
-              SK{" "}
-            </Flex>{" "}
-          </HStack>{" "}
+              SK
+            </Flex>
+          </HStack>
           <Text fontSize="12px" color="#dde1ff" fontStyle="italic">
-            {" "}
-            "The quickest checkout & premier customer care in modern
-            retail."{" "}
-          </Text>{" "}
-        </HStack>{" "}
-      </VStack>{" "}
+            "The quickest checkout & premier customer care in modern retail."
+          </Text>
+        </HStack>
+      </VStack>
     </Box>
   );
 }
@@ -293,35 +257,35 @@ function AuthForm() {
       display="flex"
       flexDirection="column"
     >
-      {" "}
       <Flex justify="space-between" align="center" mb={6}>
-        {" "}
-        <Image src="/assets/screen.png" alt="NexusMart Logo" h="32px" />{" "}
+        <Image src="/assets/screen.png" alt="NexusMart Logo" h="32px" />
         <HStack gap={1} color="#63a37c">
-          {" "}
-          <Box w="6px" h="6px" borderRadius="full" bg="#63a37c" />{" "}
+          <Box w="6px" h="6px" borderRadius="full" bg="#63a37c" />
           <Text
             fontSize="11px"
             fontWeight="700"
             color="#63a37c"
             letterSpacing="wide"
           >
-            {" "}
-            SECURE GATEWAY{" "}
-          </Text>{" "}
-        </HStack>{" "}
-      </Flex>{" "}
-      <Text fontSize="24px" fontWeight="800" color="#061449" mb={2}>
-        {" "}
-        Welcome to NexusMart{" "}
-      </Text>{" "}
+            SECURE GATEWAY
+          </Text>
+        </HStack>
+      </Flex>
+      {tab === "login" && (
+        <Text fontSize="24px" fontWeight="800" color="#061449" mb={2}>
+          Welcome to NexusMart
+        </Text>
+      )}
+      {tab === "signup" && (
+        <Text fontSize="24px" fontWeight="800" color="#061449" mb={2}>
+          Create Your Account
+        </Text>
+      )}
       <Text fontSize="14px" color="#6b7089" mb={6}>
-        {" "}
-        Access your orders, personalized recommendations, and member perks.{" "}
-      </Text>{" "}
-      {/* Tabs */}{" "}
+        Access your orders, personalized recommendations, and member perks.
+      </Text>
+      {/* Tabs */}
       <HStack bg="#eef1fb" borderRadius="10px" p="4px" mb={6}>
-        {" "}
         <Box
           flex="1"
           textAlign="center"
@@ -335,9 +299,8 @@ function AuthForm() {
           boxShadow={tab === "login" ? "sm" : "none"}
           onClick={() => setTab("login")}
         >
-          {" "}
-          Log In{" "}
-        </Box>{" "}
+          Log In
+        </Box>
         <Box
           flex="1"
           textAlign="center"
@@ -351,18 +314,17 @@ function AuthForm() {
           boxShadow={tab === "signup" ? "sm" : "none"}
           onClick={() => setTab("signup")}
         >
-          {" "}
-          Sign Up{" "}
-        </Box>{" "}
-      </HStack>{" "}
-      <Login />{" "}
+          Sign Up
+        </Box>
+      </HStack>
+      {tab === "login" && <Login />}
+      {tab === "signup" && <Register />}
     </Box>
   );
 }
 function LogRe() {
   return (
     <Flex w="100%" justify="center" bg="#f4f5fb" px={4} py={10}>
-      {" "}
       <Grid
         templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
         maxW="1000px"
@@ -374,16 +336,13 @@ function LogRe() {
         p={3}
         gap={0}
       >
-        {" "}
         <GridItem display={{ base: "none", lg: "block" }}>
-          {" "}
-          <LoginPanel />{" "}
-        </GridItem>{" "}
+          <LoginPanel />
+        </GridItem>
         <GridItem>
-          {" "}
-          <AuthForm />{" "}
-        </GridItem>{" "}
-      </Grid>{" "}
+          <AuthForm />
+        </GridItem>
+      </Grid>
     </Flex>
   );
 }

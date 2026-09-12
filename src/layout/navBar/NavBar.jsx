@@ -10,15 +10,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import {
-  FiChevronDown,
-  FiSearch,
-  FiHeart,
-  FiShoppingBag,
-  FiMenu,
-} from "react-icons/fi";
+import { FiSearch, FiHeart, FiShoppingBag, FiLogOut } from "react-icons/fi";
 import CategoryDropdown from "./CategoryDropdown.jsx";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../store/index.js";
 
 const NAV_LINKS = [
   { label: "Fashion", path: "fashion" },
@@ -31,7 +26,8 @@ const NAV_LINKS = [
 
 function NavBar() {
   const activePath = "electronics";
-
+  const { user, clearUser } = useAuthStore();
+  
   return (
     <Box shadow="sm" position="sticky" top={0} zIndex={1000}>
       {/* TOP NAV */}
@@ -125,43 +121,66 @@ function NavBar() {
             flexShrink={0}
           >
             {/* Account */}
-            <Button
-              as={Link}
-              to="/login"
-              display={{ base: "none", md: "flex" }}
-              bgColor="secColor"
-              _hover={{ bgColor: "hoversecColor" }}
-              py={2}
-              px={{ base: 3, md: 5 }}
-              color="white"
-              fontSize={{ base: "xs", md: "sm" }}
-              fontWeight="bold"
-            >
-              login
-            </Button>
-            {/* <HStack
-              gap={2}
-              cursor="pointer"
-              display={{ base: "none", md: "flex" }}
-            >
-              <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTOurIuQMHKXu7uiugMcIxKVkakfr_WkoLN0T1fe4fFTiNZO89Q1JdaCdzbgqgu-jSOm0yujfizHP6-i_8uoHLYCAoAamu9zGNNQ3-BfbaFT_Rz29WBs9nA2JGFQA6vdBgyhgGlSndzPyEgzbW2ii-A440DTmUCDJkDoo1PL_u_BctUYL3z9WRKvxVWfktmj83DibbLZIwSudEzDPNcVHiFXNrzxhG82YWbyJilntOQ1gzJ3aYqHHRGg"
-                alt="Profile"
-                boxSize={{ base: 7, md: 8 }}
-                borderRadius="full"
-                objectFit="cover"
-              />
+            {Object.keys(user).length === 0 ? (
+              <Button
+                as={Link}
+                to="/login"
+                display={{ base: "none", md: "flex" }}
+                bgColor="secColor"
+                _hover={{ bgColor: "hoversecColor" }}
+                py={2}
+                px={{ base: 3, md: 5 }}
+                color="white"
+                fontSize={{ base: "xs", md: "sm" }}
+                fontWeight="bold"
+              >
+                Login
+              </Button>
+            ) : (
+              <HStack
+                gap={2}
+                cursor="pointer"
+                display={{ base: "none", md: "flex" }}
+              >
+                <Image
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTOurIuQMHKXu7uiugMcIxKVkakfr_WkoLN0T1fe4fFTiNZO89Q1JdaCdzbgqgu-jSOm0yujfizHP6-i_8uoHLYCAoAamu9zGNNQ3-BfbaFT_Rz29WBs9nA2JGFQA6vdBgyhgGlSndzPyEgzbW2ii-A440DTmUCDJkDoo1PL_u_BctUYL3z9WRKvxVWfktmj83DibbLZIwSudEzDPNcVHiFXNrzxhG82YWbyJilntOQ1gzJ3aYqHHRGg"
+                  alt="Profile"
+                  boxSize={{ base: 7, md: 8 }}
+                  borderRadius="full"
+                  objectFit="cover"
+                />
 
-              <Flex direction="column" textAlign="left">
-                <Text fontSize="xs" color="gray.500" textTransform="uppercase">
-                  Account
-                </Text>
+                <Flex direction="column" textAlign="left">
+                  <Text
+                    fontSize="xs"
+                    color="gray.500"
+                    textTransform="uppercase"
+                  >
+                    Account
+                  </Text>
 
-                <Text fontSize="sm" fontWeight="semibold" color="gray.800">
-                  Hi, Alex
-                </Text>
-              </Flex>
-            </HStack> */}
+                  <Text fontSize="sm" fontWeight="semibold" color="gray.800">
+                    Hi, {user?.userName || "Guest"}
+                  </Text>
+                </Flex>
+                <Button
+                  p={1}
+                  borderRadius="md"
+                  bg="transparent"
+                  color="#45464f"
+                  fontSize="14px"
+                  fontWeight="500"
+                  display="flex"
+                  alignItems="center"
+                  gap={2}
+                  _hover={{ bg: "transparent" }}
+                  onClick={clearUser}
+                >
+                  <FiLogOut size={25} />
+                  <Text>Sign Out</Text>
+                </Button>
+              </HStack>
+            )}  
 
             {/* Wishlist */}
             <Box

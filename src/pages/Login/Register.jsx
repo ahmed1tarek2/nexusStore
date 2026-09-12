@@ -18,33 +18,44 @@ import {
   MdOutlineVisibility,
 } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple, FaFacebook } from "react-icons/fa";
+import { FaApple, FaFacebook, FaRegUser } from "react-icons/fa";
 import { useAuthStore } from "../../store";
-import { useLogin } from "../../service/Api/UserAuth";
+import { useLogin, useRegister } from "../../service/Api/UserAuth";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
-  const { addUser } = useAuthStore();
-  const { mutateAsync: loginUser } = useLogin();
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [loginError, setLoginError] = useState("");
+function Register() {
+  const { mutateAsync: registerUser } = useRegister();
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [registerError, setRegisterError] = useState("");
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
-  } = useForm({ defaultValues: { email: "", password: "" } });
+  } = useForm({
+    defaultValues: {
+      email: "",
+      userName: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+
+  const confirmPasswordValidation = (value) => {
+    return value === getValues("password") || "Passwords do not match";
+  };
 
   const onSubmit = async (data) => {
-    setLoginError("");
+    setRegisterError("");
     try {
-      const response = await loginUser(data);
-      addUser(response);
-      navigate("/");
+      const response = await registerUser(data);
+      navigate("/login");
     } catch (error) {
-      console.error("Login error:", error);
-      setLoginError(
+      console.error("Register error:", error);
+      setRegisterError(
         error?.response?.data?.message ||
           "Invalid email or password. Please try again.",
       );
@@ -55,6 +66,43 @@ function Login() {
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <VStack align="stretch" gap={4}>
         {/* Email */}
+        <VStack align="stretch" gap="6px">
+          <Text fontSize="13px" fontWeight="600" color="#061449">
+            Full Name
+          </Text>
+          <HStack
+            bg="#f4f5fb"
+            borderRadius="10px"
+            px={3}
+            h="44px"
+            border="1px solid"
+            borderColor={errors.email ? "#e53e3e" : "#e7e9f3"}
+            _focusWithin={{ borderColor: errors.email ? "#e53e3e" : "#061449" }}
+          >
+            <Icon asChild boxSize="16px" color="#8a8d9f">
+              <FaRegUser />
+            </Icon>
+
+            <Input
+              {...register("userName", {
+                required: "userName is required",
+                pattern: {
+                  value: /^[a-zA-Z\s]+$/,
+                  message: "Please enter a valid userName",
+                },
+              })}
+              variant="unstyled"
+              placeholder="John Doe"
+              fontSize="14px"
+              bg="#f4f5fb"
+            />
+          </HStack>
+          {errors.userName && (
+            <Text fontSize="12px" color="#e53e3e">
+              {errors.userName.message}
+            </Text>
+          )}
+        </VStack>
         <VStack align="stretch" gap="6px">
           <Text fontSize="13px" fontWeight="600" color="#061449">
             Email Address
@@ -93,70 +141,110 @@ function Login() {
           )}
         </VStack>
         {/* Password */}
-        <VStack align="stretch" gap="6px">
-          <Flex justify="space-between">
+        <HStack>
+          <VStack align="stretch" gap="6px">
             <Text fontSize="13px" fontWeight="600" color="#061449">
               Password
             </Text>
-            <Text
-              as="a"
-              href="#"
-              fontSize="12px"
-              fontWeight="600"
-              color="#ab3500"
-            >
-              Forgot password?
-            </Text>
-          </Flex>
-          <HStack
-            bg="#f4f5fb"
-            borderRadius="10px"
-            px={3}
-            h="44px"
-            border="1px solid"
-            borderColor={errors.password ? "#e53e3e" : "#e7e9f3"}
-            _focusWithin={{
-              borderColor: errors.password ? "#e53e3e" : "#061449",
-            }}
-          >
-            <Icon asChild boxSize="16px" color="#8a8d9f">
-              <MdOutlineLock />
-            </Icon>
-            <Input
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters",
-                },
-              })}
-              variant="unstyled"
-              bg="#f4f5fb"
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              fontSize="14px"
-            />
-            <Icon
-              asChild
-              boxSize="16px"
-              color="#8a8d9f"
-              cursor="pointer"
-              onClick={() => setShowPassword((value) => !value)}
-            >
-              <MdOutlineVisibility />
-            </Icon>
-          </HStack>
-          {errors.password && (
-            <Text fontSize="12px" color="#e53e3e">
-              {errors.password.message}
-            </Text>
-          )}
-        </VStack>
 
-        {/* General login error (from API) */}
-        {loginError && (
+            <HStack
+              bg="#f4f5fb"
+              borderRadius="10px"
+              px={3}
+              h="44px"
+              border="1px solid"
+              borderColor={errors.password ? "#e53e3e" : "#e7e9f3"}
+              _focusWithin={{
+                borderColor: errors.password ? "#e53e3e" : "#061449",
+              }}
+            >
+              <Icon asChild boxSize="16px" color="#8a8d9f">
+                <MdOutlineLock />
+              </Icon>
+              <Input
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
+                variant="unstyled"
+                bg="#f4f5fb"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter password"
+                fontSize="14px"
+              />
+              <Icon
+                asChild
+                boxSize="16px"
+                color="#8a8d9f"
+                cursor="pointer"
+                onClick={() => setShowPassword((value) => !value)}
+              >
+                <MdOutlineVisibility />
+              </Icon>
+            </HStack>
+            {errors.password && (
+              <Text fontSize="12px" color="#e53e3e">
+                {errors.password.message}
+              </Text>
+            )}
+          </VStack>
+
+          {/* Confirm Password */}
+          <VStack align="stretch" gap="6px">
+            <Text fontSize="13px" fontWeight="600" color="#061449">
+              Confirm Password
+            </Text>
+
+            <HStack
+              bg="#f4f5fb"
+              borderRadius="10px"
+              px={3}
+              h="44px"
+              border="1px solid"
+              borderColor={errors.confirmPassword ? "#e53e3e" : "#e7e9f3"}
+              _focusWithin={{
+                borderColor: errors.confirmPassword ? "#e53e3e" : "#061449",
+              }}
+            >
+              <Icon asChild boxSize="16px" color="#8a8d9f">
+                <IoCheckmarkDoneCircleOutline />
+              </Icon>
+              <Input
+                {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: confirmPasswordValidation,
+                })}
+                variant="unstyled"
+                bg="#f4f5fb"
+                type={showPassword ? "text" : "password"}
+                placeholder="Confirm password"
+                fontSize="14px"
+              />
+              <Icon
+                asChild
+                boxSize="16px"
+                color="#8a8d9f"
+                cursor="pointer"
+                onClick={() => setShowPassword((value) => !value)}
+              >
+                <MdOutlineVisibility />
+              </Icon>
+            </HStack>
+            {errors.confirmPassword && (
+              <Text fontSize="12px" color="#e53e3e">
+                {errors.confirmPassword.message}
+              </Text>
+            )}
+          </VStack>
+        </HStack>
+
+        {/* General register error (from API) */}
+        {registerError && (
           <Text fontSize="13px" color="#e53e3e" textAlign="center">
-            {loginError}
+            {registerError}
           </Text>
         )}
 
@@ -292,4 +380,4 @@ function Login() {
     </Box>
   );
 }
-export default Login;
+export default Register;
